@@ -4,15 +4,19 @@ var http = require('http');
 var express = require('express');
 var app = express();
 var server = http.createServer(app);
+var bodyParser = require('body-parser');
 var config = require('./config/');
 var port = process.env.PORT || 8001;
 var mongoose = require('mongoose');
 
 var environment = process.env.NODE_ENV;
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 require('./routes')(app);
 
-mongoose.connect(config.DB_CONNECTION);
+mongoose.connect('mongodb://localhost/florenceissue');
 
 switch (environment) {
   case 'test':
