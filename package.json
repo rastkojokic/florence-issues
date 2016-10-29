@@ -17,8 +17,12 @@
   "dependencies": {
     "envalid": "^2.4.0",
     "express": "^4.14.0",
+    "mongoose": "^4.6.5"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
     "gulp": "^3.9.1",
     "gulp-mocha": "^3.0.1",
-    "mongoose": "^4.6.5"
+    "request": "^2.76.0"
   }
 }
