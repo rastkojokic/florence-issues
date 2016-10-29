@@ -15,8 +15,10 @@
   },
   "homepage": "https://github.com/rastkojokic/florence-issues#readme",
   "dependencies": {
+    "envalid": "^2.4.0",
     "express": "^4.14.0",
     "gulp": "^3.9.1",
-    "gulp-mocha": "^3.0.1"
+    "gulp-mocha": "^3.0.1",
+    "mongoose": "^4.6.5"
   }
 }
