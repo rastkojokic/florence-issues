@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "description": "",
   "main": "app.js",
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/rastkojokic/florence-issues.git"
@@ -14,5 +13,8 @@
   "bugs": {
     "url": "https://github.com/rastkojokic/florence-issues/issues"
   },
-  "homepage": "https://github.com/rastkojokic/florence-issues#readme"
+  "homepage": "https://github.com/rastkojokic/florence-issues#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
 }
