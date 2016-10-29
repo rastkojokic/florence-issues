@@ -8,6 +8,8 @@ var port = process.env.PORT || 8001;
 
 var environment = process.env.NODE_ENV;
 
+require('./routes')(app);
+
 switch (environment) {
   case 'test':
     break
