@@ -8,3 +8,9 @@ exports.createIssue = function() {
     .use(verifyParams);
 };
 
+exports.updateIssue = function() {
+  return compose()
+    .use(filterParams)
+    .use(verifyParams);
+};
+
