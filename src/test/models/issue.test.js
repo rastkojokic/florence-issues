@@ -4,12 +4,6 @@ describe('Model Issue', function() {
   describe('attributes', function() {
     var schemaObj = Issue.schema.obj;
 
-    it('has description with String type', function(done) {
-      expect(schemaObj.description).to.equal(String);
-
-      done();
-    });
-
     it('has status with String type', function(done) {
       expect(schemaObj.status.type).to.equal(String);
       expect(schemaObj.status.default).to.equal('pending');

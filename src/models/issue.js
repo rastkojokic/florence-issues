@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var issueSchema = new Schema({
-  description: String,
   status: {
     type: String,
     default: 'pending'
