@@ -38,7 +38,21 @@ var getIssues = function(callback) {
   });
 };
 
+var destroyIssue = function(issueId, callback) {
+  request.delete({
+    url: apiUrl + 'issues/' + issueId
+  }, function(err, res, body) {
+    if (err) {
+      console.log(err);
+      throw new Error("fail");
+    }
+
+    callback(res, JSON.parse(body));
+  });
+};
+
 exports.createIssue = createIssue;
 exports.getIssue = getIssue;
 exports.getIssues = getIssues;
+exports.destroyIssue = destroyIssue;
 

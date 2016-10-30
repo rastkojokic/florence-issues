@@ -47,3 +47,24 @@ exports.list = function(req, res) {
     });
 };
 
+exports.destroy = function(req, res) {
+  Issue.findByIdAndRemove(req.params.id)
+    .then(function(removedIssue) {
+      if (!removedIssue) {
+        res.status(404).json({ message: 'Not found' });
+        return;
+      }
+
+      res.status(200).json({ message: 'Issue removed' });
+    })
+    .catch(function(err) {
+      if (err.value === 'notObjectId') {
+        res.status(400).json({ message: 'Bad request' });
+        return;
+      }
+
+      console.log(err);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+};
+
