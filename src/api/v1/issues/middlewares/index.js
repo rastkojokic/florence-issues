@@ -1,6 +1,6 @@
 var compose = require('composable-middleware');
-var filterParams = require('./middlewares/filterParams');
-var verifyParams = require('./middlewares/verifyParams');
+var filterParams = require('./filterParams');
+var verifyParams = require('./verifyParams');
 
 exports.createIssue = function() {
   return compose()
