@@ -12,6 +12,19 @@ var createIssue = function(options, callback) {
   });
 };
 
+var getIssue = function(issueId, callback) {
+  request.get({
+    url: apiUrl + 'issues/' + issueId
+  }, function(err, res, body) {
+    if (err) {
+      console.log(err);
+      throw new Error("fail");
+    }
+
+    callback(res, JSON.parse(body));
+  });
+};
+
 var getIssues = function(callback) {
   request.get({
     url: apiUrl + 'issues'
@@ -26,5 +39,6 @@ var getIssues = function(callback) {
 };
 
 exports.createIssue = createIssue;
+exports.getIssue = getIssue;
 exports.getIssues = getIssues;
 

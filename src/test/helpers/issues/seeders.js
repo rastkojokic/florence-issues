@@ -25,7 +25,7 @@ var seedIssues = function(options, callback) {
 
   Issue.create(issuesToBeCreated)
     .then(function(createdIssues) {
-      callback(null, createdIssues);
+      callback(createdIssues);
     })
     .catch(function(err) {
       console.log(err);
