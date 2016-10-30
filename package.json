@@ -16,8 +16,10 @@
   "homepage": "https://github.com/rastkojokic/florence-issues#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "composable-middleware": "^0.3.0",
     "envalid": "^2.4.0",
     "express": "^4.14.0",
+    "lodash": "^4.16.4",
     "mongoose": "^4.6.5",
     "q": "^1.4.1"
   },
@@ -25,6 +27,7 @@
     "chai": "^3.5.0",
     "gulp": "^3.9.1",
     "gulp-mocha": "^3.0.1",
-    "request": "^2.76.0"
+    "request": "^2.76.0",
+    "sinon": "^1.17.6"
   }
 }
