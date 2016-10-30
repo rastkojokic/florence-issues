@@ -16,7 +16,8 @@ app.use(bodyParser.json());
 
 require('./routes')(app);
 
-mongoose.connect('mongodb://localhost/florenceissue');
+mongoose.connect(config.DB_CONNECTION);
+mongoose.Promise = require('q').Promise;
 
 switch (environment) {
   case 'test':
