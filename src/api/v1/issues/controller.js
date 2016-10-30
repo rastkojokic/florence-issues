@@ -15,3 +15,14 @@ exports.post = function(req, res) {
     });
 };
 
+exports.list = function(req, res) {
+  Issue.find({})
+    .then(function(issues) {
+      res.status(200).json(issues);
+    })
+    .catch(function(err) {
+      console.log(err);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+};
+

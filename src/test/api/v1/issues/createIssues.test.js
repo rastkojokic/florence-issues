@@ -1,4 +1,4 @@
-var issuesTestHelper = require('../../../helpers/issues');
+var issuesRequestsHelpers = require('../../../helpers/issues/requests');
 
 describe('API Issues', function() {
   describe('create issue', function() {
@@ -7,14 +7,9 @@ describe('API Issues', function() {
 
     describe('empty form', function() {
       before(function(done) {
-        issuesTestHelper.createIssue({}, function(err, res) {
-          if (err) {
-            console.log(err);
-            return;
-          }
-
+        issuesRequestsHelpers.createIssue({}, function(res, resBody) {
           response = res;
-          body = JSON.parse(res.body);
+          body = resBody;
 
           done();
         });
@@ -42,18 +37,13 @@ describe('API Issues', function() {
     describe('status set in form', function() {
       describe('valid status', function() {
         before(function(done) {
-          issuesTestHelper.createIssue({
+          issuesRequestsHelpers.createIssue({
             attributes: {
               status: 'complete'
             }
-          }, function(err, res) {
-            if (err) {
-              console.log(err);
-              return;
-            }
-
+          }, function(res, resBody) {
             response = res;
-            body = JSON.parse(res.body);
+            body = resBody;
 
             done();
           });
@@ -68,18 +58,13 @@ describe('API Issues', function() {
       
       describe('valid status', function() {
         before(function(done) {
-          issuesTestHelper.createIssue({
+          issuesRequestsHelpers.createIssue({
             attributes: {
               status: 'invalid'
             }
-          }, function(err, res) {
-            if (err) {
-              console.log(err);
-              return;
-            }
-
+          }, function(res, resBody) {
             response = res;
-            body = JSON.parse(res.body);
+            body = resBody;
 
             done();
           });
@@ -95,16 +80,11 @@ describe('API Issues', function() {
 
     describe('createdAt set in form', function() {
       before(function(done) {
-        issuesTestHelper.createIssue({
+        issuesRequestsHelpers.createIssue({
           attributes: {
             createdAt: '2016-05-08T00:00:00.000Z'
           }
-        }, function(err, res) {
-          if (err) {
-            console.log(err);
-            return;
-          }
-
+        }, function(res, body) {
           response = res;
           body = JSON.parse(res.body);
 
