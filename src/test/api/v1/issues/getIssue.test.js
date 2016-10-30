@@ -43,7 +43,7 @@ describe('API Issues', function() {
       });
     });
 
-    describe('provided issue is not ObjectId', function() {
+    describe('provided issue id is not ObjectId', function() {
       it('returns 400 bad request', function(done) {
         requestsHelpers.getIssue('notObjectId', function(response, body) {
           expect(response.statusCode).to.equal(400);
