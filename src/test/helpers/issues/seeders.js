@@ -19,13 +19,13 @@ var seedIssues = function(options, callback) {
   });
 
   Issue.create(issuesToBeCreated)
-    .then(function(createdIssues) {
-      callback(createdIssues);
-    })
-    .catch(function(err) {
-      console.log(err);
-      throw new Error("fail");
-    });
+  .then(function(createdIssues) {
+    callback(createdIssues);
+  })
+  .catch(function(err) {
+    console.log(err);
+    throw new Error("fail");
+  });
 };
 
 exports.seedIssues = seedIssues;

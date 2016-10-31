@@ -1,3 +1,4 @@
+var Schema = require('mongoose').Schema;
 var Comment = require('../../models/comment');
 
 describe('Model Comment', function() {
@@ -7,6 +8,7 @@ describe('Model Comment', function() {
     it('has text with String type', function(done) {
       expect(schemaObj.text.type).to.equal(String);
       expect(schemaObj.text.required).to.equal(true);
+      expect(schemaObj.text.maxlength).to.equal(250);
 
       done();
     });
@@ -19,8 +21,8 @@ describe('Model Comment', function() {
     });
 
     it('has _issue that references Issue', function(done) {
-      expect(schemaObj._issue.type).to.equal(Number);
-      expect(schemaObj._issue.ref).to.equal('Issue');
+      expect(schemaObj._issue[0].type).to.equal(Schema.Types.ObjectId);
+      expect(schemaObj._issue[0].ref).to.equal('Issue');
 
       done();
     });

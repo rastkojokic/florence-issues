@@ -4,9 +4,14 @@ global.sinon = require('sinon');
 global.apiUrl = 'http://localhost:8001/api/v1/';
 
 var Issue = require('../models/issue');
+var Comment = require('../models/comment');
 
 beforeEach(function(done) {
-  Issue.remove({}, function() {
+  Issue.remove({})
+  .then(function() {
+    return Comment.remove({})
+  })
+  .then(function() {
     done();
   });
 });
