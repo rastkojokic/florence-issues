@@ -7,14 +7,7 @@ var seedIssues = function(options, callback) {
 
   _.times(count, function() {
     issuesToBeCreated.push({
-      status: 'pending',
-      files: [{
-        name: 'File name',
-        path: 'file/path'
-      }, {
-        name: 'Another file name',
-        path: 'another/file/path'
-      }]
+      status: 'pending'
     });
   });
 

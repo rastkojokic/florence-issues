@@ -1,7 +1,7 @@
 var issueSeedHelpers = require('../../../helpers/issues/seeders');
 var commentsRequestsHelpers = require('../../../helpers/comments/requests');
 
-describe.only('API Comments', function() {
+describe('API Comments', function() {
   describe('create comment', function() {
     var issue;
     var response;

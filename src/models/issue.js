@@ -11,12 +11,8 @@ var issueSchema = new Schema({
     ref: 'Comment'
   }],
   files: [{
-    name: String,
-    path: String,
-    createdAt: {
-      type: Date,
-      default: Date.now
-    }
+    type: Schema.Types.ObjectId,
+    ref: 'File'
   }],
   createdAt: {
     type: Date,

@@ -21,10 +21,8 @@ describe('Model Issue', function() {
     });
 
     it('has files', function(done) {
-      expect(schemaObj.files[0].name).to.equal(String);
-      expect(schemaObj.files[0].path).to.equal(String);
-      expect(schemaObj.files[0].createdAt.type).to.equal(Date);
-      expect(schemaObj.files[0].createdAt.default).to.equal(Date.now);
+      expect(schemaObj.files[0].type).to.equal(Schema.Types.ObjectId);
+      expect(schemaObj.files[0].ref).to.equal('File');
 
       done();
     });
