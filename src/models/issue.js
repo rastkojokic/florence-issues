@@ -7,11 +7,8 @@ var issueSchema = new Schema({
     default: 'pending'
   },
   comments: [{ 
-    text: String,
-    createdAt: {
-      type: Date,
-      default: Date.now
-    }
+    type: Schema.Types.ObjectId,
+    ref: 'Comment'
   }],
   files: [{
     name: String,

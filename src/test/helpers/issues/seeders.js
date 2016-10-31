@@ -8,11 +8,6 @@ var seedIssues = function(options, callback) {
   _.times(count, function() {
     issuesToBeCreated.push({
       status: 'pending',
-      comments: [{
-        text: 'Comment text'
-      }, {
-        text: 'Another comment text'
-      }],
       files: [{
         name: 'File name',
         path: 'file/path'

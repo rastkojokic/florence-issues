@@ -1,3 +1,5 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 var Issue = require('../../models/issue');
 
 describe('Model Issue', function() {
@@ -12,9 +14,8 @@ describe('Model Issue', function() {
     });
 
     it('has comments', function(done) {
-      expect(schemaObj.comments[0].text).to.equal(String);
-      expect(schemaObj.comments[0].createdAt.type).to.equal(Date);
-      expect(schemaObj.comments[0].createdAt.default).to.equal(Date.now);
+      expect(schemaObj.comments[0].type).to.equal(Schema.Types.ObjectId);
+      expect(schemaObj.comments[0].ref).to.equal('Comment');
 
       done();
     });
