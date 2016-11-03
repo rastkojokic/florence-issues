@@ -4,6 +4,13 @@ var mocha = require('gulp-mocha');
 var config = require('./gulp.config')();
 var $ = require('gulp-load-plugins')({ lazy: true });
 
+gulp.task('dev', function(done) {
+  process.env.NODE_ENV = 'development';
+  process.env.TEST_ENV = 'development';
+
+  require(config.server);
+});
+
 gulp.task('test', function(done) {
   process.env.NODE_ENV = 'test';
   process.env.TEST_ENV = 'test';
