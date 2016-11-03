@@ -35,9 +35,21 @@ exports.create = function(req, res) {
 };
 
 exports.list = function(req, res) {
-  Comment.find({_issue: req.params.issueId })
+  var page = parseInt(req.query.page) || 1;
+  var limit = parseInt(req.query.limit) || 10;
+
+  Comment.paginate({ _issue: req.params.issueId }, {
+    page: page, 
+    limit: limit 
+  })
   .then(function(comments) {
-    res.status(200).json(comments);
+    res.set({
+      'X-Total-Count': comments.total,
+      'X-Total-Pages': comments.pages,
+      'X-Current-Page': comments.page
+    });
+
+    res.status(200).json(comments.docs);
   })
   .catch(function(err) {
     console.log(err);

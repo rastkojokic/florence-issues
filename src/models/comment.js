@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var mongoosePaginate = require('mongoose-paginate');
 
 var commentSchema = new Schema({
   text: {
@@ -16,6 +17,8 @@ var commentSchema = new Schema({
     ref: 'Issue' 
   }]
 });
+
+commentSchema.plugin(mongoosePaginate);
 
 var Comment = mongoose.model('Comment', commentSchema);
 

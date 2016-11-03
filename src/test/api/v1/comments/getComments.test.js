@@ -46,6 +46,24 @@ describe('API Comments', function() {
 
       done();
     });
+
+    it('returns header containing total count', function(done) {
+      expect(response.headers['x-total-count']).to.equal('3');
+
+      done();
+    });
+
+    it('returns header containing total pages', function(done) {
+      expect(response.headers['x-total-pages']).to.equal('1');
+
+      done();
+    });
+
+    it('returns header containing next page', function(done) {
+      expect(response.headers['x-current-page']).to.equal('1');
+
+      done();
+    });
   });
 
   describe('issue does not exist', function() {

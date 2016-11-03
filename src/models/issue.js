@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var mongoosePaginate = require('mongoose-paginate');
 
 var issueSchema = new Schema({
   status: {
@@ -19,6 +20,8 @@ var issueSchema = new Schema({
     default: Date.now
   }
 });
+
+issueSchema.plugin(mongoosePaginate);
 
 var Issue = mongoose.model('Issue', issueSchema);
 

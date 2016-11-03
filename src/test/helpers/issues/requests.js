@@ -25,9 +25,17 @@ var getIssue = function(issueId, callback) {
   });
 };
 
-var getIssues = function(callback) {
+var getIssues = function(options, callback) {
+  var url;
+
+  if (options.page && options.limit) {
+    url = apiUrl + 'issues?page=' + options.page + '&limit=' + options.limit;
+  } else {
+    url = apiUrl + 'issues';
+  }
+
   request.get({
-    url: apiUrl + 'issues'
+    url: url
   }, function(err, res, body) {
     if (err) {
       console.log(err);

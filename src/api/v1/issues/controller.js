@@ -34,10 +34,19 @@ exports.show = function(req, res) {
   });
 };
 
-exports.list = function(req, res) {
-  Issue.find({})
+exports.list = function(req, res, next) {
+  var page = parseInt(req.query.page) || 1;
+  var limit = parseInt(req.query.limit) || 10;
+
+  Issue.paginate({}, { page: page, limit: limit })
   .then(function(issues) {
-    res.status(200).json(issues);
+    res.set({
+      'X-Total-Count': issues.total,
+      'X-Total-Pages': issues.pages,
+      'X-Current-Page': issues.page
+    });
+
+    res.status(200).json(issues.docs);
   })
   .catch(function(err) {
     console.log(err);
