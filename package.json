@@ -19,8 +19,10 @@
     "composable-middleware": "^0.3.0",
     "envalid": "^2.4.0",
     "express": "^4.14.0",
+    "fs": "0.0.1-security",
     "lodash": "^4.16.4",
     "mongoose": "^4.6.5",
+    "multer": "^1.2.0",
     "q": "^1.4.1"
   },
   "devDependencies": {

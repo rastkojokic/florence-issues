@@ -3,3 +3,4 @@ src/test/tmp/files-to-upload/*
 src/test/tmp/files-to-download/*
 src/test/tmp/files-uploaded/*
 src/test/tmp/files-downloaded/*
+tmp/uploads/

@@ -2,7 +2,7 @@ var compose = require('composable-middleware');
 var verifyParams = require('../../../../../api/v1/comments/middlewares/verifyParams');
 var issuesSeedHelpers = require('../../../../helpers/issues/seeders');
 
-describe('Middleware Comment Verify Params', function() {
+describe.only('Middleware Comment Verify Params', function() {
   var req = {
     params: {
       issueId: null
