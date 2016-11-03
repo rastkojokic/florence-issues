@@ -1,5 +1,6 @@
 var fs = require('fs');
 var _ = require('lodash');
+var http = require('http');
 
 exports.uploadFiles = function(options, callback) {
   var fileReadStreams = _.map(options.paths, function(path) {
@@ -18,6 +19,19 @@ exports.uploadFiles = function(options, callback) {
     }
 
     callback(res, JSON.parse(body));
+  });
+};
+
+exports.downloadFile = function(options, callback) {
+  var data = '';
+  http.get(apiUrl + 'issues/' + options.issueId + '/files/' + options.fileId, function(res) {
+    res.on('data', function(chunk) {
+      data += chunk;
+    });
+  
+    res.on('end', function() {
+      callback(data);
+    })
   });
 };
 

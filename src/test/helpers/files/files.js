@@ -1,11 +1,12 @@
 var fs = require('fs');
 var _ = require('lodash');
+var config = require('../../../config/');
 
 exports.createFiles = function(options, callback) {
   var name = options.name || 'foo-files';
   var count = options.count || 3;
-  var filePaths = [];
   var basePath = pathToUpload + '/' + name;
+  var filePaths = [];
   var writeFilePromises = [];
 
   _.times(count, function(index) {

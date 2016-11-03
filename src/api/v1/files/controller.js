@@ -1,6 +1,8 @@
 var File = require('../../../models/file');
 var Issue = require('../../../models/issue');
 var _ = require('lodash');
+var config = require('../../../config');
+var path = require('path');
 
 exports.upload = function(req, res) {
   var issue;
@@ -25,5 +27,9 @@ exports.upload = function(req, res) {
     console.log(err);
     res.status(500).json({ message: 'Internal server error' });
   });
+};
+
+exports.download = function(req, res) {
+  res.sendFile(path.join(__dirname, '../../../../' + config.FILE_STORAGE, req.params.id));
 };
 

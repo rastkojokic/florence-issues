@@ -2,7 +2,6 @@ var files = require('../../../helpers/files/files');
 var filesRequestsHelpers = require('../../../helpers/files/requests');
 var issueSeedHelpers = require('../../../helpers/issues/seeders');
 var Issue = require('../../../../models/issue');
-var File = require('../../../../models/file');
 
 describe('API Files', function() {
   var issue;
