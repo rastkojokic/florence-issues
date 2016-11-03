@@ -21,7 +21,7 @@ mongoose.Promise = require('q').Promise;
 
 switch (environment) {
   case 'test':
-    break
+    break;
   default:
     break;
 }

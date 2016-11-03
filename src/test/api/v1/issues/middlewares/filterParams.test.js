@@ -1,3 +1,4 @@
+/* jshint -W030 */
 var compose = require('composable-middleware');
 var filterParams = require('../../../../../api/v1/issues/middlewares/filterParams');
 
@@ -26,3 +27,4 @@ describe('Middleware Issue Filter Params', function() {
       })(req, {});
   });
 });
+

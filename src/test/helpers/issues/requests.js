@@ -5,7 +5,7 @@ var createIssue = function(options, callback) {
   }, function(err, res, body) {
     if (err) {
       console.log(err);
-      throw new Error("fail");
+      throw new Error('fail');
     }
 
     callback(res, JSON.parse(body));
@@ -18,7 +18,7 @@ var getIssue = function(issueId, callback) {
   }, function(err, res, body) {
     if (err) {
       console.log(err);
-      throw new Error("fail");
+      throw new Error('fail');
     }
 
     callback(res, JSON.parse(body));
@@ -39,7 +39,7 @@ var getIssues = function(options, callback) {
   }, function(err, res, body) {
     if (err) {
       console.log(err);
-      throw new Error("fail");
+      throw new Error('fail');
     }
 
     callback(res, JSON.parse(body));
@@ -52,7 +52,7 @@ var destroyIssue = function(issueId, callback) {
   }, function(err, res, body) {
     if (err) {
       console.log(err);
-      throw new Error("fail");
+      throw new Error('fail');
     }
 
     callback(res, JSON.parse(body));
@@ -66,7 +66,7 @@ var updateIssue = function(issueId, options, callback) {
   }, function(err, res, body) {
     if (err) {
       console.log(err);
-      throw new Error("fail");
+      throw new Error('fail');
     }
 
     callback(res, JSON.parse(body));

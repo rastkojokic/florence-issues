@@ -11,7 +11,7 @@ exports.upload = function(req, res) {
   .then(function(issueToBeUpdated) {
     issue = issueToBeUpdated;
 
-    return File.create(req.files)
+    return File.create(req.files);
   })
   .then(function(createdFiles) {
     _.each(createdFiles, function(createdFile) {

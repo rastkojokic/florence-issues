@@ -5,7 +5,7 @@ var createComment = function(options, callback) {
   }, function(err, res, body) {
     if (err) {
       console.log(err);
-      throw new Error("fail");
+      throw new Error('fail');
     }
 
     callback(res, JSON.parse(body));
@@ -18,7 +18,7 @@ var getComments = function(issueId, callback) {
   }, function(err, res, body) {
     if (err) {
       console.log(err);
-      throw new Error("fail");
+      throw new Error('fail');
     }
 
     callback(res, JSON.parse(body));

@@ -43,7 +43,7 @@ describe('Middleware Comment Verify Params', function() {
       compose()
         .use(verifyParams)
         .use(function(req, res, next) {
-          throw new Error("fail");
+          throw new Error('fail');
         })(req, res);
 
       done();

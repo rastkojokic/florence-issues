@@ -3,7 +3,11 @@ module.exports = function() {
 
   var config = {
     tests: src + 'test/**/*.js',
-    server: src + 'app.js'
+    server: src + 'app.js',
+    alljs: [
+      './src/**/*.js',
+      './*.js'
+    ],
   };
 
   return config;

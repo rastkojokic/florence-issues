@@ -12,7 +12,7 @@ exports.create = function(req, res) {
     return Comment.create({
       text: req.body.text,
       _issue: req.params.issueId
-    })
+    });
   })
   .then(function(createdComment) {
     comment = createdComment;

@@ -1,3 +1,4 @@
+/* jshint -W030 */
 var compose = require('composable-middleware');
 var verifyParams = require('../../../../../api/v1/issues/middlewares/verifyParams');
 
@@ -50,7 +51,7 @@ describe('Middleware Issue Verify Params', function() {
       compose()
         .use(verifyParams)
         .use(function(req, res, next) {
-          throw new Error("fail");
+          throw new Error('fail');
         })(req, res);
 
       expect(statusSpy.withArgs(400).calledOnce).to.be.true;

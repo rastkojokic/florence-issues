@@ -15,7 +15,7 @@ exports.uploadFiles = function(options, callback) {
   }, function (err, res, body) {
     if (err) {
       console.log(err);
-      throw new Error("fail");
+      throw new Error('fail');
     }
 
     callback(res, JSON.parse(body));
@@ -31,7 +31,7 @@ exports.downloadFile = function(options, callback) {
   
     res.on('end', function() {
       callback(data);
-    })
+    });
   });
 };
 

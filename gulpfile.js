@@ -1,6 +1,8 @@
+var args = require('yargs').argv;
 var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 var config = require('./gulp.config')();
+var $ = require('gulp-load-plugins')({ lazy: true });
 
 gulp.task('test', function(done) {
   process.env.NODE_ENV = 'test';
@@ -16,5 +18,17 @@ gulp.task('test', function(done) {
       .once('end', function() {
         process.exit();
       });
+});
+
+gulp.task('vet', function() {
+  console.log('Analyzing source with JSHint and JSCS');
+
+  return gulp
+    .src(config.alljs)
+    .pipe($.if(args.verbose, $.print()))
+    .pipe($.jshint())
+    .pipe($.jshint.reporter('jshint-stylish', { verbose: true }))
+    .pipe($.jshint.reporter('fail'))
+    .pipe($.jscs());
 });
 

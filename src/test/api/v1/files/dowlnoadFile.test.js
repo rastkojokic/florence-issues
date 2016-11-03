@@ -8,7 +8,7 @@ var Issue = require('../../../../models/issue');
 describe('API Files', function() {
   var issue;
   var fileId = '581b2879ccf03618c3a5d500';
-  var fileData = 'foobardata'
+  var fileData = 'foobardata';
   var response;
   var body;
 

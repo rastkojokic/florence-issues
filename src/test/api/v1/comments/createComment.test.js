@@ -1,3 +1,4 @@
+/* jshint -W030 */
 var issueSeedHelpers = require('../../../helpers/issues/seeders');
 var commentsRequestsHelpers = require('../../../helpers/comments/requests');
 var Issue = require('../../../../models/issue');
@@ -54,7 +55,7 @@ describe('API Comments', function() {
         })
         .catch(function(err) {
           console.log(err);
-          throw new Error("fail");
+          throw new Error('fail');
         });
       });
     });
@@ -64,7 +65,7 @@ describe('API Comments', function() {
         commentsRequestsHelpers.createComment({
           issueId: issue._id,
           attributes: {
-            text: (new Array(260)).join("x")
+            text: (new Array(260)).join('x')
           }
         }, function(res, resBody) {
           response = res;

@@ -27,7 +27,7 @@ var seedIssueComments = function(options, callback) {
   })
   .catch(function(err) {
     console.log(err);
-    throw new Error("fail");
+    throw new Error('fail');
   });
 };
 

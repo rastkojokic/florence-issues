@@ -3,7 +3,7 @@ var _ = require('lodash');
 
 var seedIssues = function(options, callback) {
   var count = options.count || 3;
-  var issuesToBeCreated = []
+  var issuesToBeCreated = [];
 
   _.times(count, function() {
     issuesToBeCreated.push({
@@ -17,7 +17,7 @@ var seedIssues = function(options, callback) {
   })
   .catch(function(err) {
     console.log(err);
-    throw new Error("fail");
+    throw new Error('fail');
   });
 };
 

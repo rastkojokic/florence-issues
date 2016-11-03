@@ -30,7 +30,7 @@ describe('API Issues', function() {
               if (!issue) {
                 done();
               } else {
-                throw new Error("fail");
+                throw new Error('fail');
               }
             })
             .catch(function(err) {

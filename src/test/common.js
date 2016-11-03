@@ -11,10 +11,10 @@ var File = require('../models/file');
 beforeEach(function(done) {
   Issue.remove({})
   .then(function() {
-    return Comment.remove({})
+    return Comment.remove({});
   })
   .then(function() {
-    return File.remove({})
+    return File.remove({});
   })
   .then(function() {
     done();
