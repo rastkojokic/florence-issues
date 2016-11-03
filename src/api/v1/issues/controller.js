@@ -1,9 +1,7 @@
 var Issue = require('../../../models/issue');
 
 exports.create = function(req, res) {
-  var newIssue = Issue(req.body);
-
-  newIssue.save()
+  Issue.create(req.body)
   .then(function(savedIssue) {
     res.location(req.baseUrl + '/' + savedIssue._id);
 

@@ -1,6 +1,9 @@
 var config = require('../../../../config');
 var multer  = require('multer');
-var upload = multer({ dest: config.FILE_STORAGE }).array('files', 10);
+var upload = multer({
+  dest: config.FILE_STORAGE,
+  limits: { fileSize: 500 }
+}).array('files', 10);
 
 module.exports = function(req, res, next) {
   upload(req, res, function(err) {
@@ -18,3 +21,4 @@ module.exports = function(req, res, next) {
     next();
   });
 }
+
