@@ -1,11 +1,26 @@
+var Issue = require('../../../models/issue');
 var Comment = require('../../../models/comment');
 
 exports.create = function(req, res) {
-  Comment.create({
-    text: req.body.text,
-    _issue: req.params.issueId
+  var issue;
+  var comment;
+
+  Issue.findOne({ _id: req.params.issueId })
+  .then(function(issueToBeUpdated) {
+    issue = issueToBeUpdated;
+
+    return Comment.create({
+      text: req.body.text,
+      _issue: req.params.issueId
+    })
   })
-  .then(function(comment) {
+  .then(function(createdComment) {
+    comment = createdComment;
+    issue.comments.push(comment);
+
+    return issue.save();
+  })
+  .then(function(issue) {
     res.status(201).json(comment);
   })
   .catch(function(err) {

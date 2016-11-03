@@ -1,5 +1,6 @@
 var issueSeedHelpers = require('../../../helpers/issues/seeders');
 var commentsRequestsHelpers = require('../../../helpers/comments/requests');
+var Issue = require('../../../../models/issue');
 
 describe('API Comments', function() {
   describe('create comment', function() {
@@ -41,6 +42,20 @@ describe('API Comments', function() {
         expect(body._id).to.exist;
 
         done();
+      });
+
+      it('adds comment to issue', function(done) {
+        Issue.findOne({ _id: issue.id })
+        .populate('comments')
+        .then(function(updatedIssue) {
+          expect(updatedIssue.comments.length).to.equal(1);
+
+          done();
+        })
+        .catch(function(err) {
+          console.log(err);
+          throw new Error("fail");
+        });
       });
     });
 
