@@ -24,8 +24,8 @@ exports.show = function(req, res) {
     res.status(200).json(issue);
   })
   .catch(function(err) {
-    if (err.value === 'notObjectId') {
-      res.status(400).json({ message: 'Bad request' });
+    if (err.kind === 'ObjectId' && err.name === 'CastError') {
+      res.status(404).json({ message: 'Not found' });
       return;
     }
 
@@ -65,8 +65,8 @@ exports.destroy = function(req, res) {
     res.status(200).json({ message: 'Issue removed' });
   })
   .catch(function(err) {
-    if (err.value === 'notObjectId') {
-      res.status(400).json({ message: 'Bad request' });
+    if (err.kind === 'ObjectId' && err.name === 'CastError') {
+      res.status(404).json({ message: 'Not found' });
       return;
     }
 
@@ -86,8 +86,8 @@ exports.update = function(req, res) {
     res.status(200).json(updatedIssue);
   })
   .catch(function(err) {
-    if (err.value === 'notObjectId') {
-      res.status(400).json({ message: 'Bad request' });
+    if (err.kind === 'ObjectId' && err.name === 'CastError') {
+      res.status(404).json({ message: 'Not found' });
       return;
     }
 

@@ -56,7 +56,7 @@ describe('API Issues', function() {
         });
       });
       
-      describe('valid status', function() {
+      describe('invalid status', function() {
         before(function(done) {
           issuesRequestsHelpers.createIssue({
             attributes: {

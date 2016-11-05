@@ -24,12 +24,16 @@ exports.create = function(req, res) {
     res.status(201).json(comment);
   })
   .catch(function(err) {
-    if (err.name === 'ValidationError') {
-      res.status(400).json({ message: 'Bad request' });
-      return;
+    if (err.errors) {
+      if(err.errors.text.name === 'ValidatorError' && err.errors.text.kind === 'maxlength') {
+        res.status(400).json({ message: 'Bad request: comment text is too long (250 chars maximum)' });
+        return;
+      } else if(err.errors.text.name === 'ValidatorError' && err.errors.text.kind === 'required') {
+        res.status(400).json({ message: 'Bad request: text cannot be blank' });
+        return;
+      }
     }
 
-    console.log(err);
     res.status(500).json({ message: 'Internal server error' });
   });
 };

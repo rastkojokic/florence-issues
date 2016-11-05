@@ -51,9 +51,9 @@ describe('API Issues', function() {
     });
 
     describe('provided issue id is not ObjectId', function() {
-      it('returns 400 bad request', function(done) {
+      it('returns 404 not found status', function(done) {
         requestsHelpers.destroyIssue('notObjectId', function(response, body) {
-          expect(response.statusCode).to.equal(400);
+          expect(response.statusCode).to.equal(404);
 
           done();
         });
