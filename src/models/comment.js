@@ -6,7 +6,8 @@ var commentSchema = new Schema({
   text: {
     type: String,
     required: true,
-    maxlength: 250
+    maxlength: 250,
+    match: /[^\s-]/
   },
   createdAt: {
     type: Date,

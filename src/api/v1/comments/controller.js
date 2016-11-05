@@ -31,6 +31,9 @@ exports.create = function(req, res) {
       } else if(err.errors.text.name === 'ValidatorError' && err.errors.text.kind === 'required') {
         res.status(400).json({ message: 'Bad request: text cannot be blank' });
         return;
+      } else if(err.errors.text.name === 'ValidatorError' && err.errors.text.kind === 'regexp') {
+        res.status(400).json({ message: 'Bad request: text cannot be blank' });
+        return;
       }
     }
 

@@ -125,6 +125,28 @@ describe('API Comments', function() {
       });
     });
 
+    describe('text field contains only whitespace characters', function() {
+      beforeEach(function(done) {
+        commentsRequestsHelpers.createComment({
+          issueId: issue._id,
+          attributes: {
+            text: '   '
+          }
+        }, function(res, resBody) {
+          response = res;
+          body = resBody;
+
+          done();
+        });
+      });
+      
+      it('returns bad request', function(done) {
+        expect(response.statusCode).to.equal(400);
+
+        done();
+      });
+    });
+
     describe('issue does not exist', function() {
       beforeEach(function(done) {
         commentsRequestsHelpers.createComment({
