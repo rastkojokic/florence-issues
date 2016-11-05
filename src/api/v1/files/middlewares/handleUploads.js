@@ -8,6 +8,7 @@ var upload = multer({
 module.exports = function(req, res, next) {
   upload(req, res, function(err) {
     if (err) {
+      console.log(err);
       var message = 'Bad request';
 
       if (err.code === 'LIMIT_UNEXPECTED_FILE') {

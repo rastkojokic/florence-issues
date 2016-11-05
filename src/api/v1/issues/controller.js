@@ -6,6 +6,8 @@ var Issue = require('../../../models/issue');
  * @apiGroup Issue
  * @apiDescription Create issue with with specified or if not default status
  *
+ * @apiHeader (RequestFileHeader) {String="application/json"} Content-Type 
+ *
  * @apiParam {String="pending","complete"} [status="pending"] Issue status
  *
  * @apiSuccess (201) {String} status Status of the Issue
@@ -13,7 +15,9 @@ var Issue = require('../../../models/issue');
  * @apiSuccess (201) {Object} files Issue files
  * @apiSuccess (201) {Object} comments Issue comments
  *
- * @apiError (500) {String} message Error info
+ * @apiSuccess (400) {String} message Invalid value for status
+ *
+ * @apiError (500) {String} message Internal server error
  */
 exports.create = function(req, res) {
   Issue.create(req.body)
@@ -34,6 +38,8 @@ exports.create = function(req, res) {
  * @apiGroup Issue
  * @apiDescription Get issue with given :id with all of its files and with comment ids
  *
+ * @apiParam {Number} id Issue id that needs to be deleted
+ *
  * @apiSuccess (200) {String} status Status of the Issue
  * @apiSuccess (200) {String} createdAt Time of creation
  * @apiSuccess (200) {Object} files Issue files
@@ -41,7 +47,7 @@ exports.create = function(req, res) {
  *
  * @apiNotFound (404) {String} message Not found info
  *
- * @apiError (500) {String} message Error info
+ * @apiError (500) {String} message Internal server error
  */
 exports.show = function(req, res) {
   Issue.findOne({ _id: req.params.id })
@@ -67,19 +73,19 @@ exports.show = function(req, res) {
 
 /**
  * @api {get} /issues Get issues
- * @apiName GetIssue
+ * @apiName GetIssues
  * @apiGroup Issue
  * @apiDescription Get all the issues from the database using pagination
  *
- * @apiParam {Number} page Page of the issues collection
- * @apiParam {Number} limit Documents per page
+ * @apiParam {Number} [page=1] Page of the issues collection
+ * @apiParam {Number} [limit=10] Documents per page
  *
  * @apiSuccess (200) {Array} Array of issues
  * @apiSuccess (PaginationResponseHeader) {String} x-total-count Number of total documents
  * @apiSuccess (PaginationResponseHeader) {String} x-total-pages Number of total pages
  * @apiSuccess (PaginationResponseHeader) {String} x-current-page Current page
  *
- * @apiError (500) {String} message Error info
+ * @apiError (500) {String} message Internal server error
  */
 exports.list = function(req, res, next) {
   Issue.paginate({}, { 
@@ -108,14 +114,13 @@ exports.list = function(req, res, next) {
  * @apiGroup Issue
  * @apiDescription Delete the issue with :id
  *
- * @apiParam {Number} page Page of the issues collection
- * @apiParam {Number} limit Documents per page
+ * @apiParam {Number} id Issue id that needs to be deleted
  *
  * @apiSuccess (200) {String} message Issue delete successfully info
  *
  * @apiNotFound (404) {String} message Not found info
  *
- * @apiError (500) {String} message Error info
+ * @apiError (500) {String} message Internal server error
  */
 exports.destroy = function(req, res) {
   Issue.findByIdAndRemove(req.params.id)
@@ -144,6 +149,10 @@ exports.destroy = function(req, res) {
  * @apiGroup Issue
  * @apiDescription Update the issue with given :id
  *
+ * @apiHeader (RequestFileHeader) {String="application/json"} Content-Type 
+ *
+ * @apiParam {Number} id Issue id that needs to be deleted
+ *
  * @apiParam {String="pending","complete"} [status="pending"] Issue status
  *
  * @apiSuccess (200) {String} status Status of the Issue
@@ -153,7 +162,7 @@ exports.destroy = function(req, res) {
  *
  * @apiNotFound (404) {String} message Not found info
  *
- * @apiError (500) {String} message Error info
+ * @apiError (500) {String} message Internal server error
  */
 exports.update = function(req, res) {
   Issue.findByIdAndUpdate(req.params.id, req.body, { new: true })

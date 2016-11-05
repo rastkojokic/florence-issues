@@ -5,9 +5,12 @@ var Comment = require('../../../models/comment');
  * @api {post} /issues/:issueId/comments Create comment for issue
  * @apiName CreateComment
  * @apiGroup Comment
- * @apiDescription Create comment for issue with :issueId id
+ * @apiDescription Create comment for issue specified issue
  *
- * @apiParam {String} text Comment text cannot be blank
+ * @apiHeader (RequestFileHeader) {String="application/json"} Content-Type 
+ *
+ * @apiParam {ObjectId} issueId Issue id that comment belongs to
+ * @apiParam {String} text Comment text
  *
  * @apiSuccess (201) {String} text Comment text
  * @apiSuccess (201) {String} createdAt Time of creation
@@ -16,7 +19,7 @@ var Comment = require('../../../models/comment');
  * @apiBad (400) {String} message Comment text is too long maximum 250 chars
  * @apiBad (400) {String} message Comment text cannot be blank
  *
- * @apiError (500) {String} message Error info
+ * @apiError (500) {String} message Internal server error
  */
 exports.create = function(req, res) {
   var issue;
@@ -64,15 +67,16 @@ exports.create = function(req, res) {
  * @apiGroup Comment
  * @apiDescription Get the comments for the issue with :issueId id
  *
- * @apiParam {Number} page Page of the issues collection
- * @apiParam {Number} limit Documents per page
+ * @apiParam {ObjectId} issueId Issue id that comment belongs to
+ * @apiParam {Number} [page=1] Page of the issues collection
+ * @apiParam {Number} [limit=10] Documents per page
  *
  * @apiSuccess (200) {Array} Array of comments
  * @apiSuccess (PaginationResponseHeader) {String} x-total-count Number of total documents
  * @apiSuccess (PaginationResponseHeader) {String} x-total-pages Number of total pages
  * @apiSuccess (PaginationResponseHeader) {String} x-current-page Current page
  *
- * @apiError (500) {String} message Error info
+ * @apiError (500) {String} message Internal server error
  */
 exports.list = function(req, res) {
   var page = parseInt(req.query.page) || 1;

@@ -3,6 +3,7 @@ var gulp = require('gulp');
 var mocha = require('gulp-mocha');
 var config = require('./gulp.config')();
 var $ = require('gulp-load-plugins')({ lazy: true });
+var apidoc = require('gulp-apidoc');
 
 gulp.task('dev', function(done) {
   process.env.NODE_ENV = 'development';
@@ -39,3 +40,9 @@ gulp.task('vet', function() {
     .pipe($.jscs());
 });
 
+gulp.task('apidoc', function(done){
+  apidoc({
+    src: 'src/',
+    dest: 'src/doc/'
+  },done);
+});

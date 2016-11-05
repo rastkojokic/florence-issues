@@ -1,8 +1,7 @@
 {
     "excludeFiles": [
       "node_modules/**",
-      "bower_components/**",
-      "src/client/app/core/environment.js"
+      "src/doc/**",
     ],
 
     "requireCurlyBraces": [

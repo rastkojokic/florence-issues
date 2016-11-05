@@ -8,18 +8,18 @@ var path = require('path');
  * @api {post} /issues/:issueId/files Upload an issue file
  * @apiName UploadFile
  * @apiGroup File
- * @apiDescription Upload files for issue with :issueId id
+ * @apiDescription Upload files for issue with :issueId id and returns changed issue along with newly uploaded files
  *
  * @apiHeader (UploadFileHeader) {String="multipart/form-data"} Content-Type 
  *
- * @apiParam {Object[]} files Array of uploading files
+ * @apiParam {File[]} files Array of uploading files
  *
  * @apiSuccess (200) {String} status Status of the issue
  * @apiSuccess (200) {String} createdAt Time of creation
  * @apiSuccess (200) {Object} files Issue files
  * @apiSuccess (200) {Object} comments Issue comments
  *
- * @apiError (500) {String} message Error info
+ * @apiError (500) {String} message Internal server error
  */
 exports.upload = function(req, res) {
   var issue;
@@ -31,7 +31,7 @@ exports.upload = function(req, res) {
       return {
         path: file.filename,
         _issue: issue._id
-      }
+      };
     });
 
     return File.create(filesToCreate);
@@ -54,13 +54,15 @@ exports.upload = function(req, res) {
 
 /**
  * @api {get} /issues/:issueId/files/:id Download specific file
- * @apiName UploadFile
+ * @apiName DownloadFile
  * @apiGroup File
- * @apiDescription Download with id :id that belongs to issue with :issueId id
+ * @apiDescription Download file with id :id that belongs to issue with :issueId id
  *
- * @apiSuccess (200) {Object} file Binary file
+ * @apiSuccess (200) {File} file Binary file
  *
- * @apiError (500) {String} message Error info
+ * @apiSuccess (404) {String} message Not found
+ *
+ * @apiError (500) {String} message Internal server error
  */
 exports.download = function(req, res) {
   File.findOne({ _id: req.params.id })
