@@ -10,8 +10,14 @@ exports.upload = function(req, res) {
   Issue.findOne({ _id: req.params.issueId })
   .then(function(issueToBeUpdated) {
     issue = issueToBeUpdated;
+    var filesToCreate = _.map(req.files, function(file) {
+      return {
+        path: file.filename,
+        _issue: issue._id
+      }
+    });
 
-    return File.create(req.files);
+    return File.create(filesToCreate);
   })
   .then(function(createdFiles) {
     _.each(createdFiles, function(createdFile) {
@@ -30,6 +36,18 @@ exports.upload = function(req, res) {
 };
 
 exports.download = function(req, res) {
-  res.sendFile(path.join(__dirname, '../../../../' + config.FILE_STORAGE, req.params.id));
+  File.findOne({ _id: req.params.id })
+  .then(function(file) {
+    if (!file) {
+      res.status(404).json({ message: 'Not found' });
+      return;
+    }
+
+    res.sendFile(path.join(__dirname, '../../../../' + config.FILE_STORAGE, file.path));
+  })
+  .catch(function(err) {
+    console.log(err);
+    res.status(500).json({ message: 'Internal server error' });
+  });
 };
 

@@ -1,22 +1,22 @@
-var fs = require('fs');
-var config = require('../../../../config');
-var files = require('../../../helpers/files/files');
+var fileSeedHelpers = require('../../../helpers/files/seeders');
 var filesRequestsHelpers = require('../../../helpers/files/requests');
 var issueSeedHelpers = require('../../../helpers/issues/seeders');
 var Issue = require('../../../../models/issue');
 
 describe('API Files', function() {
   var issue;
-  var fileId = '581b2879ccf03618c3a5d500';
-  var fileData = 'foobardata';
+  var file;
   var response;
   var body;
 
   beforeEach(function(done) {
+
     issueSeedHelpers.seedIssues({}, function(issues) {
       issue = issues[0];
 
-      fs.writeFile(config.FILE_STORAGE + fileId, fileData, function(results) {
+      fileSeedHelpers.seedFile(issues[0], function(createdFile) {
+        file = createdFile;
+
         done();
       });
     });
@@ -26,9 +26,9 @@ describe('API Files', function() {
     it('returns file', function(done) {
       filesRequestsHelpers.downloadFile({
         issueId: issue.id,
-        fileId: fileId
+        fileId: file.id
       }, function(data) {
-        expect(data).to.equal(fileData);
+        expect(data).to.equal('foobardata');
 
         done();
       });

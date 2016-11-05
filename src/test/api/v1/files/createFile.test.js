@@ -1,4 +1,4 @@
-var files = require('../../../helpers/files/files');
+var fileSeedHelpers = require('../../../helpers/files/seeders');
 var filesRequestsHelpers = require('../../../helpers/files/requests');
 var issueSeedHelpers = require('../../../helpers/issues/seeders');
 var Issue = require('../../../../models/issue');
@@ -19,7 +19,7 @@ describe('API Files', function() {
 
   describe('upload', function() {
     beforeEach(function(done) {
-      files.createFiles({}, function(paths) {
+      fileSeedHelpers.writeFiles({}, function(paths) {
         filePaths = paths;
 
         done();
@@ -62,7 +62,7 @@ describe('API Files', function() {
 
     describe('number of uploaded files exceed max count', function() {
       beforeEach(function(done) {
-        files.createFiles({ count: 11 }, function(paths) {
+        fileSeedHelpers.writeFiles({ count: 11 }, function(paths) {
           filesRequestsHelpers.uploadFiles({ 
             issueId: issue.id,
             paths: paths

@@ -15,6 +15,7 @@ exports.create = function(req, res) {
 
 exports.show = function(req, res) {
   Issue.findOne({ _id: req.params.id })
+  .populate(['files'])
   .then(function(issue) {
     if (!issue) {
       res.status(404).json({ message: 'Not found' });
@@ -38,7 +39,7 @@ exports.list = function(req, res, next) {
   var page = parseInt(req.query.page) || 1;
   var limit = parseInt(req.query.limit) || 10;
 
-  Issue.paginate({}, { page: page, limit: limit })
+  Issue.paginate({}, { page: page, limit: limit, populate: ['files'] })
   .then(function(issues) {
     res.set({
       'X-Total-Count': issues.total,

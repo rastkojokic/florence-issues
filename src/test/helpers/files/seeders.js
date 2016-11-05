@@ -1,8 +1,9 @@
 var fs = require('fs');
 var _ = require('lodash');
 var config = require('../../../config/');
+var File = require('../../../models/file');
 
-exports.createFiles = function(options, callback) {
+exports.writeFiles = function(options, callback) {
   var name = options.name || 'foo-files';
   var count = options.count || 3;
   var basePath = pathToUpload + '/' + name;
@@ -23,6 +24,18 @@ exports.createFiles = function(options, callback) {
   .catch(function(err) {
     console.log(err);
     throw new Error('fail');
+  });
+};
+
+exports.seedFile = function(issue, callback) {
+  File.create({
+    path: 'path',
+    _issue: issue._id
+  })
+  .then(function(file) {
+    fs.writeFile(config.FILE_STORAGE + file.path, 'foobardata', function(results) {
+      callback(file);
+    });
   });
 };
 
