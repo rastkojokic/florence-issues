@@ -8,12 +8,6 @@ Install packages:
 npm install
 ```
 
-Create upload folder in repository root:
-
-```
-mkdir tmp
-```
-
 For running gulp tasks you need to install gulp globally:
 
 ```
